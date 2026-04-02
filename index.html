@@ -3,48 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的開發者作品集</title>
+    <title>吳富民 | 軟體開發工程師</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-color: #0f111a;
+            --card-bg: #1e212b;
+            --primary: #ff9800;
+            --secondary: #4db8ff;
+            --text-main: #ffffff;
+            --text-muted: #a0aab2;
+        }
+        
         body {
-            background-color: #1a1a1a;
-            color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Noto Sans TC', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* 頂部自我介紹區塊 (Hero Section) */
+        header {
+            background: linear-gradient(135deg, #1a1d24 0%, #0f111a 100%);
+            padding: 80px 20px;
             text-align: center;
-            padding: 50px 20px;
+            border-bottom: 1px solid #2a2e3d;
         }
-        h1 { color: #ff9800; font-size: 2.5em; }
-        p { font-size: 1.2em; color: #cccccc; line-height: 1.6; max-width: 600px; margin: 0 auto 30px; }
+
+        .profile-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 3em;
+            font-weight: 900;
+            margin: 0 0 10px 0;
+            letter-spacing: 2px;
+        }
+
+        .highlight { color: var(--primary); }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: var(--secondary);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .bio {
+            font-size: 1.1em;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto 30px;
+        }
+
+        .github-btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: #000;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .github-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
+        }
+
+        /* 作品集區塊 (Portfolio Section) */
+        section {
+            padding: 60px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h2.section-title {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        h2.section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* 卡片網格排版 */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
         .project-card {
-            background-color: #2d2d2d;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px auto;
-            max-width: 500px;
-            text-align: left;
-            border-left: 5px solid #ff9800;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            border-top: 4px solid #2a2e3d;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
-        .project-card a { color: #4db8ff; text-decoration: none; font-weight: bold; font-size: 1.2em;}
-        .project-card a:hover { text-decoration: underline; }
-        .skills { margin-top: 40px; color: #888; font-size: 0.9em; }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-top-color: var(--secondary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            margin: 0 0 15px 0;
+            color: var(--text-main);
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95em;
+            flex-grow: 1;
+            margin-bottom: 20px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background-color: #2a2e3d;
+            color: var(--secondary);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            font-weight: 700;
+        }
+
+        .project-link {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: bold;
+            display: inline-block;
+            transition: color 0.2s;
+        }
+
+        .project-link:hover { color: #fff; }
+        .project-link::after { content: ' →'; }
+
+        /* RWD 響應式設定 */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2em; }
+            header { padding: 50px 20px; }
+        }
     </style>
 </head>
 <body>
 
-    <h1>嗨，我是 [你的名字] 👋</h1>
-    <p>我是一名熱愛技術的軟體工程師，專注於後端開發、系統架構與 Docker 容器化部署。喜歡將複雜的問題轉化為乾淨、高效的程式碼。</p>
+    <header>
+        <div class="profile-container">
+            <h1>嗨，我是 <span class="highlight">吳富民</span></h1>
+            <div class="subtitle">崑山科技大學 資工系 | 軟體開發工程師</div>
+            <p class="bio">
+                我是一名熱愛程式開發的學生，專注於後端架構、硬體整合與系統部署。從網頁全端系統到微控制器開發，我都充滿熱情，致力於將複雜的邏輯轉化為乾淨、高效且可正式上線的程式碼。
+            </p>
+            <a href="https://github.com/frank0509" target="_blank" class="github-btn">前往我的 GitHub</a>
+        </div>
+    </header>
 
-    <h2>🚀 精選專案</h2>
+    <section>
+        <h2 class="section-title">精選作品集</h2>
+        <div class="projects-grid">
 
-    <div class="project-card">
-        <a href="https://frank0509.github.io/restaurant-pos-system/" target="_blank">🍔 饗宴點餐系統與 KDS 廚房看板</a>
-        <p style="font-size: 1em; color: #aaa; margin-top: 10px; margin-bottom: 0;">
-            具備現代化 UI、WebSocket 即時推播與 Docker 容器化部署的餐廳點餐解決方案。
-        </p>
-    </div>
+            <div class="project-card">
+                <h3 class="project-title">🍔 饗宴點餐系統與 KDS 廚房看板</h3>
+                <div class="tech-tags">
+                    <span class="tag">FastAPI</span>
+                    <span class="tag">WebSocket</span>
+                    <span class="tag">Docker</span>
+                </div>
+                <p class="project-desc">
+                    具備現代化 UI 與安全 Token 機制的掃碼點餐系統。透過 WebSocket 達成零延遲的廚房 Kanban 訂單推播，並完整實作 Docker 容器化一鍵部署。
+                </p>
+                <a href="https://frank0509.github.io/restaurant-pos-system/" target="_blank" class="project-link">查看完整系統說明</a>
+            </div>
 
-    <div class="skills">
-        技術棧：Python | FastAPI | Docker | SQLite | WebSockets | Git
-    </div>
+            <div class="project-card">
+                <h3 class="project-title">📡 區域網路設備安全掃描器</h3>
+                <div class="tech-tags">
+                    <span class="tag">C/C++</span>
+                    <span class="tag">STM32</span>
+                    <span class="tag">FreeRTOS</span>
+                </div>
+                <p class="project-desc">
+                    基於 STM32H753ZI 開發板的嵌入式專案。實作 LwIP 網路協定棧，可掃描區網內連接設備之 MAC 位址，並具備白名單異常警報機制。
+                </p>
+                <a href="https://github.com/frank0509" target="_blank" class="project-link">前往 GitHub 原始碼</a>
+            </div>
+
+            <div class="project-card">
+                <h3 class="project-title">🎮 Web 3D 動作生存遊戲原型</h3>
+                <div class="tech-tags">
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">3D 渲染</span>
+                    <span class="tag">遊戲邏輯</span>
+                </div>
+                <p class="project-desc">
+                    於網頁端開發的「Survivors-like」生存動作遊戲原型，實作角色 3D 模型渲染、敵人蜂擁生成邏輯、攻擊判定與技能升級系統。
+                </p>
+                <a href="https://github.com/frank0509" target="_blank" class="project-link">前往 GitHub 原始碼</a>
+            </div>
+
+        </div>
+    </section>
 
 </body>
 </html>
